@@ -1,0 +1,32 @@
+name: Build VyOS Image
+
+on: workflow_dispatch
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+      - name: Install Deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install vyos-modular
+      - name: Init VyOS Modular
+        run: |
+          mkdir resources
+          mkdir resources/isos
+      - name: Build Base ISO
+        # as of now we currently use 1.4 "sagitta" as the base
+        run: |
+          vyos-modular build_iso -b 1.4.0 -r sagitta
+      - name: Logging
+        run: |
+          ls -la .
+          ls -la resources/isos
