@@ -18,6 +18,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install vyos-modular
+          apt install docker
       - name: Init VyOS Modular
         run: |
           mkdir resources
@@ -30,4 +31,3 @@ jobs:
         run: |
           ls -la .
           ls -la resources/isos
-          docker ps
