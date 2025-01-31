@@ -104,6 +104,10 @@ jobs:
         run: |
           mkdir resources
           mkdir resources/isos
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: resources/isos
       - name: Logging
         run: |
           ls -la .
