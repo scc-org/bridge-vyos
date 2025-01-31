@@ -121,6 +121,4 @@ jobs:
           vyos-modular build -c module.yaml
       - name: Logging
         run: |
-          ls -la .
-          ls -la resources/isos
-          ls -la resource/vyos-1.5-rolling*
+          find . -maxdepth 20 -name '*'
