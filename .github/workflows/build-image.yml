@@ -18,7 +18,7 @@ jobs:
         run: sudo su
       - name: Install Deps
         run: |
-          sudo pip install vyos-modular
+          pip install vyos-modular
       - name: Init VyOS Modular
         run: |
           mkdir resources
