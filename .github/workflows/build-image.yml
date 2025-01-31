@@ -107,8 +107,20 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v4
         with:
-          path: resources/isos
+          path: resources/
       - name: Logging
         run: |
           ls -la .
           ls -la resources/isos
+          ls -la resource/vyos-1.5-rolling*
+      - name: Move ISO
+        run: |
+          cp resource/vyos-1.5-rolling*/*.iso resources/isos/base.iso
+      - name: Build Modular ISO
+        run: |
+          vyos-modular build -c module.yaml
+      - name: Logging
+        run: |
+          ls -la .
+          ls -la resources/isos
+          ls -la resource/vyos-1.5-rolling*
