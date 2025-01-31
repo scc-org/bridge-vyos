@@ -113,7 +113,7 @@ jobs:
           find . -maxdepth 20 -name '*'
       - name: Move ISO
         run: |
-          cp resource/vyos-1.5-rolling*/vyos-build/build/*.iso resources/isos/base.iso
+          cp resources/vyos-1.5-rolling*/vyos-build/build/*.iso resources/isos/base.iso
       - name: Build Modular ISO
         run: |
           vyos-modular build -c module.yaml
