@@ -110,9 +110,7 @@ jobs:
           path: resources/
       - name: Logging
         run: |
-          ls -la .
-          ls -la resources/isos
-          ls -la resource/vyos-1.5-rolling*
+          find . -maxdepth 20 -name '*'
       - name: Move ISO
         run: |
           cp resource/vyos-1.5-rolling*/build/*.iso resources/isos/base.iso
