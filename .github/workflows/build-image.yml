@@ -115,7 +115,7 @@ jobs:
           ls -la resource/vyos-1.5-rolling*
       - name: Move ISO
         run: |
-          cp resource/vyos-1.5-rolling*/*.iso resources/isos/base.iso
+          cp resource/vyos-1.5-rolling*/build/*.iso resources/isos/base.iso
       - name: Build Modular ISO
         run: |
           vyos-modular build -c module.yaml
