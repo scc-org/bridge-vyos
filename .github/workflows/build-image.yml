@@ -89,6 +89,7 @@ jobs:
           if-no-files-found: error
 
   modular-build:
+    needs: base-build
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -103,10 +104,6 @@ jobs:
         run: |
           mkdir resources
           mkdir resources/isos
-      - name: Build Base ISO
-        # as of now we currently use 1.4 "sagitta" as the base
-        run: |
-          vyos-modular build_iso -b 1.4.0 -r sagitta
       - name: Logging
         run: |
           ls -la .
