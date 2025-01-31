@@ -18,7 +18,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install vyos-modular
-          apt install docker
+          sudo apt install docker
       - name: Init VyOS Modular
         run: |
           mkdir resources
