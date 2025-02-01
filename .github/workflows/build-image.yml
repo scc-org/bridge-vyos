@@ -38,7 +38,7 @@ jobs:
             echo "BUILD_BY=${{ github.event.inputs.BUILD_BY }}" >> $GITHUB_ENV
           fi
           if [ -z "${{ github.event.inputs.build_version }}" ]; then
-            echo "build_version=1.5-rolling-$(date -u +%Y%m%d%H%M)" >> $GITHUB_OUTPUT
+            echo "build_version=rolling-$(date -u +%Y%m%d%H%M)" >> $GITHUB_OUTPUT
           else
             echo "build_version=${{ github.event.inputs.build_version }}" >> $GITHUB_OUTPUT
           fi
@@ -52,11 +52,9 @@ jobs:
           # This might change with future Debian versions when they ship minisign
           repository: vyos/vyos-build
           path: vyos-build
-          ref: 1.4.0 # We are using 1.4.0 as the base ISO currently
 
       - name: Build generic ISO image
         id: build_generic_iso
-        # Newer versions use 'generic' as apposed to 'iso' as the build flavor, currently we are using 1.4.0 so the build flavor will be 'iso'
         run: |
           cd vyos-build
           sudo --preserve-env ./build-vyos-image \
@@ -68,7 +66,7 @@ jobs:
             --debian-security-mirror $DEBIAN_SECURITY_MIRROR \
             --version ${{ steps.set_env_variables.outputs.build_version }} \
             --vyos-mirror $VYOS_MIRROR \
-            iso
+            generic
           cd build
           GENERIC_IMAGE_NAME=$(jq --raw-output .artifacts[0] manifest.json | sed -e 's/.iso//')
           GENERIC_IMAGE_ISO=$(jq --raw-output .artifacts[0] manifest.json)
