@@ -67,7 +67,7 @@ jobs:
             --debian-security-mirror $DEBIAN_SECURITY_MIRROR \
             --version ${{ steps.set_env_variables.outputs.build_version }} \
             --vyos-mirror $VYOS_MIRROR \
-            generic
+            iso
           cd build
           GENERIC_IMAGE_NAME=$(jq --raw-output .artifacts[0] manifest.json | sed -e 's/.iso//')
           GENERIC_IMAGE_ISO=$(jq --raw-output .artifacts[0] manifest.json)
