@@ -116,7 +116,7 @@ jobs:
           cp resources/vyos-rolling*/vyos-build/build/*.iso resources/isos/base.iso
       - name: Build Modular ISO
         run: |
-          vyos-modular build -c config.yaml
+          vyos-modular build -c config.yml
       - name: Logging
         run: |
           find . -maxdepth 20 -name '*'
