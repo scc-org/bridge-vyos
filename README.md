@@ -5,6 +5,7 @@ This is the VyOS build made for YeahNet Bridge Networking
 Our build of VyOS uses the `current` (VyOS Rolling Release) Branch
 
 The build system we use for our modifications is [vyos-modular](https://github.com/jack-broadway/vyos-modular)
+
 For the base rolling release images we use the standard [vyos-build](https://github.com/vyos/vyos-build) tool
 
 ## Important Note
