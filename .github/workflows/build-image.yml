@@ -87,39 +87,3 @@ jobs:
             **/${{ steps.build_generic_iso.outputs.generic_image_iso }}.minisig
           retention-days: 15
           if-no-files-found: error
-
-  modular-build:
-    needs: base-build
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v3
-        with:
-          python-version: "3.10"
-      - name: Install Deps
-        run: |
-          pip install vyos-modular
-      - name: Init VyOS Modular
-        run: |
-          mkdir resources
-          mkdir resources/isos
-      - name: Download Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: resources/
-      - name: Logging
-        run: |
-          find . -maxdepth 20 -name '*'
-      - name: Move ISO
-        run: |
-          cp resources/vyos-rolling*/vyos-build/build/*.iso resources/isos/base.iso
-      - name: Change Permissions
-        run: |
-          chmod -R 777 *
-      - name: Build Modular ISO
-        run: |
-          sudo -E vyos-modular build -c config.yml
-      - name: Logging
-        run: |
-          find . -maxdepth 20 -name '*'
