@@ -114,9 +114,12 @@ jobs:
       - name: Move ISO
         run: |
           cp resources/vyos-rolling*/vyos-build/build/*.iso resources/isos/base.iso
+      - name: Change Permissions
+        run: |
+          chmod -R 777 *
       - name: Build Modular ISO
         run: |
-          vyos-modular build -c config.yml
+          sudo -E vyos-modular build -c config.yml
       - name: Logging
         run: |
           find . -maxdepth 20 -name '*'
