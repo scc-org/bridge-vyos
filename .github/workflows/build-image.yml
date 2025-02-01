@@ -52,6 +52,7 @@ jobs:
           # This might change with future Debian versions when they ship minisign
           repository: vyos/vyos-build
           path: vyos-build
+          ref: 1.4.0
 
       - name: Build generic ISO image
         id: build_generic_iso
@@ -116,7 +117,7 @@ jobs:
           cp resources/vyos-1.5-rolling*/vyos-build/build/*.iso resources/isos/base.iso
       - name: Build Modular ISO
         run: |
-          vyos-modular build -c module.yaml
+          vyos-modular build -c config.yaml
       - name: Logging
         run: |
           find . -maxdepth 20 -name '*'

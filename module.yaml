@@ -1,7 +1,0 @@
-version: 2
-metadata:
-  name: tailscale
-spec:
-  patches_core: true
-  ansible_roles:
-    - tailscale
